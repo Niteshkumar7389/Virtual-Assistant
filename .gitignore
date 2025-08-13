@@ -1,5 +1,7 @@
 # Logs
 .env
+client/.env
+server/.env
 logs
 *.log
 npm-debug.log*
@@ -8,9 +10,17 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Node modules
 node_modules
+client/node_modules
+server/node_modules
+
+# Build outputs
 dist
 dist-ssr
+build
+client/build
+server/dist
 *.local
 
 # Editor directories and files
