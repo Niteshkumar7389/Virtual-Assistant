@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../components/Card";
 import { MdCloudUpload } from "react-icons/md";
 import img1 from "../assets/bg.jpg";
-import img2 from "../assets/bgImage.jpg";
+import img2 from "../assets/bGImage.jpg";
 import img3 from "../assets/BG.png";
 import img4 from "../assets/background.jpg";
 import img5 from "../assets/Bg1.jpg";
