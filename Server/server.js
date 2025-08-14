@@ -34,7 +34,12 @@ app.get("/", async (req, res) => {
   res.json(data);
 });
 
-app.listen(PORT, () => {
-  ConnectDB();
-  console.log("Server Started");
-});
+await ConnectDB();
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log("Server Started");
+  });
+}
+
+export default server;
