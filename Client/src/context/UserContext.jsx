@@ -17,11 +17,16 @@ const UserContext = ({ children }) => {
       const result = await axios.get(`${serverUrl}/api/user/current`, {
         withCredentials: true,
       });
+      if (result.data && result.data._id) {
       setUserData(result.data);
-    } catch (error) {
-      console.log(error);
+    } else {
+      setUserData(null);
     }
-  };
+  } catch (error) {
+    console.log(error);
+    setUserData(null);
+  }
+};
 
   //assistant in frontend
   const getGeminiResponse = async (command) => {
