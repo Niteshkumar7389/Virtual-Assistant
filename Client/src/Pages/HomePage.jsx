@@ -30,6 +30,7 @@ const HomePage = () => {
         withCredentials: true,
       });
       setUserData(null);
+      localStorage.removeItem("token");
       navigate("/signin");
     } catch (error) {
       console.log(error);
