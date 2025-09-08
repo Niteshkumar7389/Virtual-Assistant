@@ -1,7 +1,9 @@
 import uploadCloudinary from "../config/cloudinary.js";
 import geminiResponse from "../Gemini.js";
 import User from "../models/user.model.js";
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
+
 
 export const getCurrentUser = async (req, res) => {
   try {
@@ -69,7 +71,7 @@ export const askToAssistant = async (req, res) => {
         return res.json({
           type,
           userInput: geminiResult.userInput,
-          response: `Current date is ${moment().format("YYYY-MM-DD")}`,
+          response: `Current date is ${moment().tz("Asia/Kolkata").format("YYYY-MM-DD")}`,
         });
       case "get_time":
         return res.json({
@@ -81,13 +83,13 @@ export const askToAssistant = async (req, res) => {
         return res.json({
           type,
           userInput: geminiResult.userInput,
-          response: `Today is ${moment().format("dddd")}`,
+          response: `Today is ${moment().tz("Asia/Kolkata").format("dddd")}`,
         });
       case "get_month":
         return res.json({
           type,
           userInput: geminiResult.userInput,
-          response: `The month is ${moment().format("MMMM")}`,
+          response: `The month is ${moment().tz("Asia/Kolkata").format("MMMM")}`,
         });
       case "google_search":
       case "youtube_search":
