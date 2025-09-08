@@ -75,7 +75,7 @@ export const askToAssistant = async (req, res) => {
         return res.json({
           type,
           userInput: geminiResult.userInput,
-          response: `Current time is ${moment().format("hh:mm A")}`,
+          response: `Current time is ${moment().tz("Asia/Kolkata").format("hh:mm A")}`,
         });
       case "get_day":
         return res.json({
