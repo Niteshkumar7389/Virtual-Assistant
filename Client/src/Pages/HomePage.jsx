@@ -53,8 +53,13 @@ const HomePage = () => {
   const speak = (text) => {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "hi-IN";
-    const voices = window.speechSynthesis.getVoices();
-    const hindiVoice = voices.find((v) => v.lang === "hi-IN");
+    // const voices = window.speechSynthesis.getVoices();
+    // const hindiVoice = voices.find((v) => v.lang === "hi-IN");
+    // if (hindiVoice) {
+    //   utterance.voice = hindiVoice;
+    // }
+    const setVoiceAndSpeak = (voices) => {
+    const hindiVoice = voices.find((v) => v.lang === "hi-IN") || voices[0];
     if (hindiVoice) {
       utterance.voice = hindiVoice;
     }
@@ -70,6 +75,16 @@ const HomePage = () => {
     synth.cancel();
     synth.speak(utterance);
   };
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    setVoiceAndSpeak(voices);
+  } else {
+    window.speechSynthesis.onvoiceschanged = () => {
+      const updatedVoices = window.speechSynthesis.getVoices();
+      setVoiceAndSpeak(updatedVoices);
+    }
+    }
+  }
 
   //speech to text
   useEffect(() => {
