@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const isProd = process.env.NODE_ENV === "production";
 const frontendDomain = isProd
-  ? ".virtual-assistant-frontend-random.onrender.com"
+  ? "https://virtual-assistant-r00f.onrender.com"
   : "localhost";
 
 export const signUp = async (req, res) => {
