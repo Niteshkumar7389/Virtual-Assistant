@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://virtual-assistant-r00f.onrender.com",
+    origin: "https://virtual-assistant-lqqy.onrender.com",
     credentials: true,
   })
 );
