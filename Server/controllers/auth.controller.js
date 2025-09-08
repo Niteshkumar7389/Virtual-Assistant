@@ -35,9 +35,8 @@ export const signUp = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, //hr*min*sec*miliseconds
-       sameSite: isProd ? "none" : "lax",
+      sameSite: isProd ? "none" : "lax",
       secure: isProd,
-      domain: frontendDomain,
       path: "/",
     });
 
@@ -68,7 +67,6 @@ export const Login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, //hr*min*sec*miliseconds
       sameSite: isProd ? "none" : "lax",
       secure: isProd,
-      domain: frontendDomain,
       path: "/",
     });
 
@@ -84,8 +82,7 @@ export const logout = async (req, res) => {
       httpOnly: true,
       sameSite: isProd ? "none" : "lax",
       secure: isProd,
-      domain: frontendDomain,
-      path: "/",    
+      path: "/",   
     });
     res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {
