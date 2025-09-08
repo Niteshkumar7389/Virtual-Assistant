@@ -2,6 +2,11 @@ import generateToken from "../config/token.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
+const isProd = process.env.NODE_ENV === "production";
+const frontendDomain = isProd
+  ? ".virtual-assistant-frontend-random.onrender.com"
+  : "localhost";
+
 export const signUp = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -30,8 +35,10 @@ export const signUp = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, //hr*min*sec*miliseconds
-      sameSite: "None",
-      secure: true,
+       sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      domain: frontendDomain,
+      path: "/",
     });
 
     return res.status(201).json(user);
@@ -59,8 +66,10 @@ export const Login = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, //hr*min*sec*miliseconds
-      sameSite: "None",
-      secure: true,
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      domain: frontendDomain,
+      path: "/",
     });
 
     return res.status(201).json(user);
@@ -73,9 +82,10 @@ export const logout = async (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,   
-      sameSite: "lax",
-      path: "/",     
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      domain: frontendDomain,
+      path: "/",    
     });
     res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {
